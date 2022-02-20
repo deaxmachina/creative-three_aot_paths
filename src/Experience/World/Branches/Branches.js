@@ -88,6 +88,6 @@ export default class Branches {
 
   // What happens to the branches on animation tick 
   update() {
-    this.material.uniforms.uTime.value += this.time.delta * 0.001
+    this.material.uniforms.uTime.value += this.time.delta * 0.0005
   }
 }

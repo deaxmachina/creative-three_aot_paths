@@ -23,6 +23,8 @@ export default class Renderer {
     this.instance.setClearColor('#040c25')
     this.instance.setSize(this.sizes.width, this.sizes.height)
     this.instance.setPixelRatio(this.sizes.pixelRatio)
+    this.instance.outputEncoding = THREE.sRGBEncoding
+    this.instance.toneMapping = THREE.ReinhardToneMapping
   }
 
   // What happens to the renderer when resized
