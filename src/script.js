@@ -1,0 +1,408 @@
+import './style.css'
+import Experience from './Experience/Experience'
+
+const experience = new Experience(
+    document.querySelector('canvas.webgl')
+)
+
+// import * as THREE from 'three'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+// import * as dat from 'lil-gui'
+// import branchesVertexShader from './shaders/branches/vertex.glsl'
+// import branchesFragmentShader from './shaders/branches/fragment.glsl'
+// import tinyBranchesVertexShader from './shaders/tinyBranches/vertex.glsl'
+// import tinyBranchesFragmentShader from './shaders/tinyBranches/fragment.glsl'
+// import trunkVertexShader from './shaders/trunk/vertex.glsl'
+// import trunkFragmentShader from './shaders/trunk/fragment.glsl'
+// import starsVertexShader from './shaders/stars/vertex.glsl'
+// import starsFragmentShader from './shaders/stars/fragment.glsl'
+
+
+// // Values to play with:
+// // const cylinerHeight = Math.random()+1.5  ---  1.5 is setting the min length of the branches
+// // const cylinerRadiusSmall = 0.005  --- size of the radius of the end of the cylinders
+// // const cylinerRadiusLarge = 0.03 * Math.random() --- size of the radius at the start of the cylinders
+// // groupCyliners.position.y += 1  ---  how far up to move the whole tree; do we want to see the end of the branches or they extend all the way outside the screen
+// // camera.position.set(0, - 0.25, 2.5)  --- this is combined with groupCyliners.position.y; how much of the tree should be in view, i.e. how much to zoom into the z direction
+
+// // Gui 
+// const gui = new dat.GUI()
+
+// // Canvas
+// const canvas = document.querySelector('canvas.webgl')
+
+// // Sizes
+// const sizes = {
+//     width: window.innerWidth,
+//     height: window.innerHeight
+// }
+
+// // Scene 
+// const scene = new THREE.Scene()
+
+
+// // obj - your object (THREE.Object3D or derived)
+// // point - the point of rotation (THREE.Vector3)
+// // axis - the axis of rotation (normalized THREE.Vector3)
+// // theta - radian value of rotation
+// // pointIsWorld - boolean indicating the point is in world coordinates (default = false)
+// function rotateAboutPoint(obj, point, axis, theta, pointIsWorld){
+//     pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld;
+
+//     if(pointIsWorld){
+//         obj.parent.localToWorld(obj.position); // compensate for world coordinate
+//     }
+
+//     obj.position.sub(point); // remove the offset
+//     obj.position.applyAxisAngle(axis, theta); // rotate the POSITION
+//     obj.position.add(point); // re-add the offset
+
+//     if(pointIsWorld){
+//         obj.parent.worldToLocal(obj.position); // undo world coordinates compensation
+//     }
+
+//     obj.rotateOnAxis(axis, theta); // rotate the OBJECT
+// }
+
+
+
+// /////////////////////////////////////////
+// ///////////////// Galaxy ////////////////
+// /////////////////////////////////////////
+//  const parameters = {}
+//  parameters.count = 100000
+//  parameters.size = 0.005
+//  parameters.radius = 5
+//  parameters.branches = 3
+//  parameters.spin = 1
+//  parameters.randomness = 0.5
+//  parameters.randomnessPower = 3
+//  parameters.insideColor = '#ff6030'
+//  parameters.outsideColor = '#1b3984'
+ 
+//  let geometryGalaxy = null
+//  let materialGalaxy = null
+//  let points = null
+
+//  const generateGalaxy = () => {
+//     if(points !== null)
+//     {
+//         geometryGalaxy.dispose()
+//         materialGalaxy.dispose()
+//         scene.remove(points)
+//     }
+
+//     /**
+//      * Geometry
+//      */
+//      geometryGalaxy = new THREE.BufferGeometry()
+
+//     const positions = new Float32Array(parameters.count * 3)
+//     const colors = new Float32Array(parameters.count * 3)
+//     const scales = new Float32Array(parameters.count * 1)
+
+//     const insideColor = new THREE.Color(parameters.insideColor)
+//     const outsideColor = new THREE.Color(parameters.outsideColor)
+
+
+//     for(let i = 0; i < parameters.count; i++)
+//     {
+//         const i3 = i * 3
+
+//         // Position
+//         const radius = Math.random() * parameters.radius
+//         positions[i3    ] = (0.5 - Math.random())*13
+//         positions[i3 + 1] = (0.5 - Math.random())*13
+//         positions[i3 + 2] = (0.5 - Math.random())*13
+
+//         // Color
+//         const mixedColor = insideColor.clone()
+//         mixedColor.lerp(outsideColor, radius / parameters.radius)
+
+//         colors[i3    ] = mixedColor.r
+//         colors[i3 + 1] = mixedColor.g
+//         colors[i3 + 2] = mixedColor.b
+
+//         // Scale
+//         scales[i] = Math.random()
+//     }
+
+//     geometryGalaxy.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+//     geometryGalaxy.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+//     geometryGalaxy.setAttribute('aScale', new THREE.BufferAttribute(scales, 1))
+
+//     /**
+//      * Material
+//      */
+//     materialGalaxy = new THREE.ShaderMaterial({
+//         depthWrite: false,
+//         blending: THREE.AdditiveBlending,
+//         vertexColors: true,
+//         vertexShader: starsVertexShader,
+//         fragmentShader: starsFragmentShader,
+//         uniforms: {
+//             uSize: { value: 30 * renderer.getPixelRatio() }
+//         }
+//     })
+    
+//     /**
+//     * Points
+//     */
+//     points = new THREE.Points(geometryGalaxy, materialGalaxy)
+//     scene.add(points)
+// }
+    
+
+
+// /////////////////////////////////////////
+// /////////////// Geometry ////////////////
+// /////////////////////////////////////////
+// // Geometry for the Trunk
+// const trunkHeight = 5
+// const geometryTrunk = new THREE.CylinderGeometry( 0.2, 0.6, trunkHeight, 60, 20 );
+// // const count = geometryTrunk.attributes.position.count // this is the number of vertices in the geometry 
+// // const randoms = new Float32Array(count)
+// // // We add one random value for each vertex
+// // for (let i = 0; i < count; i++) {
+// //     randoms[i] = Math.random()
+// // }
+// // // Provide that array into the attributes of the geometry so that we can 
+// // // access them from the shader
+// // geometryTrunk.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1))
+
+
+
+// /////////////////////////////////////////
+// /////////////// Materials ///////////////
+// /////////////////////////////////////////
+
+// // Material for Branches
+// const materialBranches = new THREE.ShaderMaterial({
+//     side: THREE.DoubleSide,
+//     // wireframe: true,
+//     transparent: true,
+//     // opacity: 0.6,
+//     vertexShader: branchesVertexShader,
+//     fragmentShader: branchesFragmentShader,
+//     uniforms: {
+//         uFrequency: { value: new THREE.Vector2(5, 5) },
+//         uTime: { value: 0 },
+//         uColor: { value: new THREE.Color('purple') } 
+//     }
+// })
+// gui.add(materialBranches.uniforms.uFrequency.value, 'x').min(0).max(20).name('frequencyX')
+// gui.add(materialBranches.uniforms.uFrequency.value, 'y').min(0).max(20).name('frequencyY')
+
+
+// // Material for tiny Branches
+// const materialTinyBranches = new THREE.ShaderMaterial({
+//     side: THREE.DoubleSide,
+//     // wireframe: true,
+//     transparent: true,
+//     // opacity: 0.6,
+//     vertexShader: tinyBranchesVertexShader,
+//     fragmentShader: tinyBranchesFragmentShader,
+//     uniforms: {
+//         uFrequency: { value: new THREE.Vector2(10, 5) },
+//         uTime: { value: 0 },
+//         uColor: { value: new THREE.Color('purple') } 
+//     }
+// })
+
+// // Material for Trunk
+// const materialTrunk = new THREE.ShaderMaterial({
+//     side: THREE.DoubleSide,
+//     // wireframe: true,
+//     transparent: true,
+//     // opacity: 0.6,
+//     vertexShader: trunkVertexShader,
+//     fragmentShader: trunkFragmentShader,
+//     uniforms: {
+//         uFrequency: { value: new THREE.Vector2(10, 5) },
+//         uTime: { value: 0 },
+//         uColor: { value: new THREE.Color('purple') } 
+//     }
+// })
+// gui.add(materialTrunk.uniforms.uFrequency.value, 'x').min(0).max(20).name('frequencyX')
+// gui.add(materialTrunk.uniforms.uFrequency.value, 'y').min(0).max(20).name('frequencyY')
+
+
+
+// /////////////////////////////////////////
+// ////////////////// Mesh //////////////////
+// /////////////////////////////////////////
+
+// // Mesh for the Trunk
+// const meshTrunk = new THREE.Mesh(geometryTrunk, materialTrunk)
+// meshTrunk.position.y -= 1.1;
+// scene.add(meshTrunk)
+
+// // // Some meshes for really thin branches
+// // const tinyCyliners = new THREE.Group();
+// // for (let i=-Math.PI*0.5; i < Math.PI*0.5; i+=0.05) {
+// //     const cylinerHeight = Math.random()+2.7
+// //     const cylinerRadiusSmall = 0.003
+// //     const cylinerRadiusLarge = 0.005
+// //     const geometry = new THREE.CylinderGeometry(
+// //         cylinerRadiusSmall, cylinerRadiusLarge, cylinerHeight, 60, 60, 60
+// //         );
+// //     const count = geometry.attributes.position.count // this is the number of vertices in the geometry 
+// //     const randoms = new Float32Array(count)
+// //     for (let i = 0; i < count; i++) {
+// //         randoms[i] = Math.random()
+// //     }
+// //     // Create the corresponding mesh
+// //     const mesh = new THREE.Mesh(geometry, materialTinyBranches)
+// //     // Make sure each cyliner starts at the center
+// //     mesh.position.x = 0
+// //     mesh.position.y = 0
+// //     mesh.position.z = 0
+// //     // To rotate around the end of the cyliner
+// //     const halfCylinerLength = cylinerHeight * 0.5 
+// //     rotateAboutPoint(
+// //         mesh, 
+// //         new THREE.Vector3(0, -halfCylinerLength, 0), 
+// //         new THREE.Vector3(
+// //             (0.5-Math.random())*2, 
+// //             (0.5-Math.random())*2, 
+// //             (0.5-Math.random())*2
+// //             ), 
+// //         //new THREE.Vector3(0, 0, 1), 
+// //         i
+// //     )
+
+// //     tinyCyliners.add(mesh)   
+// // }
+// // tinyCyliners.position.y += 1.5
+// // scene.add( tinyCyliners );
+
+
+// // Many meshes for the Branches
+// const groupCyliners = new THREE.Group();
+// for (let i=-Math.PI*0.5; i < Math.PI*0.5; i+=0.005) {
+//     //const randomLength = Math.random()
+//     //const geometry = new THREE.CylinderGeometry( 0.1, 0.5, 1, 20, 20 );
+//     // Geometries - introduce randomness 
+//     const cylinerHeight = 5
+//     const cylinerRadiusSmall = 0.002 * Math.random()
+//     const cylinerRadiusLarge = 0.2 * Math.random()
+//     const geometry = new THREE.CylinderGeometry(
+//         cylinerRadiusSmall, cylinerRadiusLarge, cylinerHeight, 60, 60, 60
+//         );
+//     // We can add our own attributes to the geometry and get them inside the 
+//     // vertex shader that way; we have position, uv and normal by default 
+//     const count = geometry.attributes.position.count // this is the number of vertices in the geometry 
+//     const randoms = new Float32Array(count)
+//     // We add one random value for each vertex
+//     for (let i = 0; i < count; i++) {
+//         randoms[i] = Math.random()
+//     }
+//     // Provide that array into the attributes of the geometry so that we can 
+//     // access them from the shader
+//     geometry.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1))
+
+
+
+//     // Create the corresponding mesh
+//     const mesh = new THREE.Mesh(geometry, materialBranches)
+
+//     // Make sure each cyliner starts at the center
+//     mesh.position.x = 0
+//     mesh.position.y = 0
+//     mesh.position.z = 0
+
+//     // To rotate around the center
+//     // mesh.rotation.x = i
+//     // To rotate around the end of the cyliner
+//     const halfCylinerLength = cylinerHeight * 0.5 
+//     rotateAboutPoint(
+//         mesh, 
+//         new THREE.Vector3(0, -halfCylinerLength, 0), 
+//         new THREE.Vector3(
+//             (0.5-Math.random())*2, 
+//             (0.5-Math.random())*2, 
+//             (0.5-Math.random())*2
+//             ), 
+//         //new THREE.Vector3(1, 0, 1), 
+//         i
+//     )
+
+//     groupCyliners.add(mesh)   
+// }
+// groupCyliners.position.y += 3.5
+// scene.add( groupCyliners );
+
+
+
+// /////////////////////////////////////////
+// /////////////// Cameras /////////////////
+// /////////////////////////////////////////
+// // Base camera
+// const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+// //camera.position.set(0.25, - 0.25, 1)
+// camera.position.set(0, -4, 2)
+// scene.add(camera)
+
+// /////////////////////////////////////////
+// /////////////// Controls ////////////////
+// /////////////////////////////////////////
+// const controls = new OrbitControls(camera, canvas)
+// controls.enableDamping = true
+
+// /////////////////////////////////////////
+// /////////////// Renderer ////////////////
+// /////////////////////////////////////////
+// const renderer = new THREE.WebGLRenderer({
+//     canvas: canvas
+// })
+// renderer.setSize(sizes.width, sizes.height)
+// renderer.setClearColor('#040c25')
+// // renderer.autoClear = false;
+// // renderer.setClearColor(0x000000, 0.0);
+// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+// generateGalaxy()
+
+
+// /////////////////////////////////////////
+// ///////////// Resize event //////////////
+// /////////////////////////////////////////
+// window.addEventListener('resize', () =>
+// {
+//     // Update sizes
+//     sizes.width = window.innerWidth
+//     sizes.height = window.innerHeight
+
+//     // Update camera
+//     camera.aspect = sizes.width / sizes.height
+//     camera.updateProjectionMatrix()
+
+//     // Update renderer
+//     renderer.setSize(sizes.width, sizes.height)
+//     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+// })
+
+// /////////////////////////////////////////
+// /////////////// Animate /////////////////
+// /////////////////////////////////////////
+// const clock = new THREE.Clock()
+// const tick = () =>
+// {
+//     const elapsedTime = clock.getElapsedTime()
+
+//     // Update materials
+//     materialBranches.uniforms.uTime.value = elapsedTime
+//     materialTinyBranches.uniforms.uTime.value = elapsedTime
+//     materialTrunk.uniforms.uTime.value = elapsedTime
+
+//     // Update controls
+//     controls.update()
+
+//     // Render
+//     renderer.render(scene, camera)
+
+//     // Call tick again on the next frame
+//     window.requestAnimationFrame(tick)
+// }
+
+// tick()
