@@ -25,8 +25,8 @@ export default class Composer {
     this.setInstance()
     this.addRgbPass()
     //this.addDotScreenPass()
-    // this.addUnrealBloomPass()
-    // this.addGammaCorrectionPass()
+    this.addUnrealBloomPass()
+    this.addGammaCorrectionPass()
     this.addSmaaPass()
   }
 
@@ -78,7 +78,7 @@ export default class Composer {
   addRgbPass() {
     this.rgbShiftPass = new ShaderPass(RGBShiftShader)
     this.rgbShiftPass.enabled = true
-    this.rgbShiftPass.uniforms['amount'].value = 0.005;
+    this.rgbShiftPass.uniforms['amount'].value = 0.0025;
     this.rgbShiftPass.uniforms['angle'].value = 2;
     this.instance.addPass(this.rgbShiftPass)
   }
@@ -100,9 +100,9 @@ export default class Composer {
   // Add unreal bloom pass 
   addUnrealBloomPass() {
     this.unrealBloomPass = new UnrealBloomPass()
-    this.unrealBloomPass.strength = 0.1
-    this.unrealBloomPass.radius = 1
-    this.unrealBloomPass.threshold = 0.9
+    this.unrealBloomPass.strength = 0.15
+    this.unrealBloomPass.radius = 1.2
+    this.unrealBloomPass.threshold = 0.5
     this.instance.addPass(this.unrealBloomPass)
   }
 

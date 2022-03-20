@@ -17,11 +17,15 @@ void main () {
 
   // Mixing two different colours with white as well 
   vec3 whiteCol = vec3(1.0, 1.0, 1.0);
-  vec3 greenCol = vec3(122.0/255.0, 232.0/255.0, 143.0/255.0);
-  vec3 blueCol = vec3(165.0/255.0, 1.0, 253.3/255.0);
+  // vec3 greenCol = vec3(122.0/255.0, 232.0/255.0, 143.0/255.0);
+  // vec3 blueCol = vec3(165.0/255.0, 1.0, 253.3/255.0);
+  vec3 greenCol = vec3(0.05, 0.7, 1.0);
+  vec3 blueCol = vec3(0.13, 0.1, 1.0);
 
-  float strength = (1.0-vUv.y)*3.0;
-  vec3 mixedColor = mix(blueCol, greenCol, vUv.y*0.5);
+  // vec3 mixedColor = mix(blueCol, greenCol, vUv.y*0.5);
+  //float strength = (1.0-vUv.y)*3.0;
+  vec3 mixedColor = mix(blueCol, greenCol, vUv.y*0.25);
+  float strength = (1.0-vUv.y)*10.0;
   mixedColor *= mix(mixedColor, whiteCol, strength);
   gl_FragColor = vec4(mixedColor, 0.7);
 }

@@ -17,6 +17,7 @@ export default class Branches {
     
     // Draw
     this.setMaterial()
+    this.createRandomCylinder()
     this.setMesh()
   }
 
@@ -37,21 +38,23 @@ export default class Branches {
 
   // Generate just one cylider geometry with some randomness
   createRandomCylinder() {
-    const cylinerRadiusSmall = 0.002 * Math.random()
-    const cylinerRadiusLarge = 0.2 * Math.random()
+    const cylinerRadiusSmall =  0.002 //0.002 * Math.random()
+    const cylinerRadiusLarge = 0.1 //0.2 * Math.random()
     const geometry = new THREE.CylinderGeometry(
         cylinerRadiusSmall, cylinerRadiusLarge, this.cylinderHeight, 60, 60, 60
         );
-    return geometry
+    //return geometry
+    this.geometry = geometry
   }
 
   // Create one mesh for each of the cyliders going in a circle
   createMeshes() {
     const groupCyliners = new THREE.Group();
     for (let i=-Math.PI*0.5; i < Math.PI*0.5; i+=0.005) {
-      const geometry = this.createRandomCylinder()
+      // const geometry = this.createRandomCylinder()
       // Create the corresponding mesh
-      const mesh = new THREE.Mesh(geometry, this.material)
+      // const mesh = new THREE.Mesh(geometry, this.material)
+      const mesh = new THREE.Mesh(this.geometry, this.material)
 
       // Make sure each cyliner starts at the center
       mesh.position.x = 0
