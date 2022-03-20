@@ -35,13 +35,14 @@ export default class Trunk {
 
   setGeometry() {
     this.geometry = new THREE.CylinderGeometry( 
-      0.2, 0.6, this.trunkHeight, 60, 20 
+      0.25, 0.6, this.trunkHeight, 60, 20 
       );
   }
 
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.mesh.position.y -= 1.1;
+    this.mesh.position.x += 1;
+    this.mesh.position.y -= 1.8;
     this.scene.add(this.mesh)
   }
 

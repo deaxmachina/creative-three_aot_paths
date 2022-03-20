@@ -32,6 +32,8 @@ export default class Camera {
   setOrbitControls() {
     this.controls = new OrbitControls(this.instance, this.canvas)
     this.controls.enableDamping = true
+    //this.controls.enableRotate  = false;
+    this.controls.enabled = false;
   }
 
   // Just the logic for what happens to camera on resize event
@@ -42,6 +44,6 @@ export default class Camera {
 
   // What happens to the camera on each tick of the animation
   update() {
-    this.controls.update()
+    //this.controls.update()
   }
 }

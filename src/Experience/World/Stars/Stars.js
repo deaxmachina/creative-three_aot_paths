@@ -34,10 +34,10 @@ export default class Stars {
         const i3 = i * 3
         // Position
         const radius = Math.random() * this.parameters.radius
-        positions[i3    ] = (0.5 - Math.random())*25
+        positions[i3    ] = (0.5 - Math.random())*15
         //positions[i3 + 1] = (0.5 - Math.random())*13
-        positions[i3 + 1] = (0.75 - Math.random())*12
-        positions[i3 + 2] = (0.5 - Math.random())*25
+        positions[i3 + 1] = (0.85 - Math.random())*15
+        positions[i3 + 2] = (0.5 - Math.random())*10
 
         // Scale
         scales[i] = Math.random()

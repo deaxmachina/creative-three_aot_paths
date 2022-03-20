@@ -32,7 +32,7 @@ export default class Hills {
     this.texture.canvas.style.left = 0
     this.texture.canvas.style.zIndex = 1
 
-    document.body.append(this.texture.canvas)
+    //document.body.append(this.texture.canvas)
 
     this.texture.context = this.texture.canvas.getContext('2d')
 

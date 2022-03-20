@@ -24,7 +24,7 @@ void main () {
 
   // vec3 mixedColor = mix(blueCol, greenCol, vUv.y*0.5);
   //float strength = (1.0-vUv.y)*3.0;
-  vec3 mixedColor = mix(blueCol, greenCol, vUv.y*0.25);
+  vec3 mixedColor = mix(blueCol, greenCol, vUv.y*0.3);
   float strength = (1.0-vUv.y)*10.0;
   mixedColor *= mix(mixedColor, whiteCol, strength);
   gl_FragColor = vec4(mixedColor, 0.7);

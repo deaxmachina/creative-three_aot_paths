@@ -6,7 +6,7 @@ import Branches from './Branches/Branches'
 import Trunk from './Trunk/Trunk'
 import Hills from './Hills/Hills'
 import Stars from './Stars/Stars'
-import BranchStrings from './BranchStrings/BranchStrings'
+// import BranchStrings from './BranchStrings/BranchStrings'
 
 export default class World {
   constructor() {
@@ -25,13 +25,11 @@ export default class World {
     this.trunk = new Trunk()
     this.stars = new Stars()
     this.hills = new Hills()
-    //this.branchStrings = new BranchStrings()
     
   }
 
   update() {
     this.branches.update()
     this.trunk.update()
-    //this.branchStrings.update()
   }
 }

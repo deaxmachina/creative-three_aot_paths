@@ -23,7 +23,7 @@ export default class Composer {
     // Start the instance of the Effect Composer 
     this.getRenderTarget()
     this.setInstance()
-    this.addRgbPass()
+    //this.addRgbPass()
     //this.addDotScreenPass()
     this.addUnrealBloomPass()
     this.addGammaCorrectionPass()
@@ -69,16 +69,26 @@ export default class Composer {
     this.instance.setPixelRatio(this.sizes.pixelRatio)
   }
 
+  saveImage() {
+    const canvas = document.getElementById("webgl");
+    const image = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = image.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+    a.download = "image.png";
+    a.click();
+  }
+
   // What happens to the effect composer on animation tick 
   update() {
     this.instance.render()
+    //this.saveImage()
   }
 
   // Add RGB Pass
   addRgbPass() {
     this.rgbShiftPass = new ShaderPass(RGBShiftShader)
     this.rgbShiftPass.enabled = true
-    this.rgbShiftPass.uniforms['amount'].value = 0.0025;
+    this.rgbShiftPass.uniforms['amount'].value = 0.003;
     this.rgbShiftPass.uniforms['angle'].value = 2;
     this.instance.addPass(this.rgbShiftPass)
   }
@@ -100,9 +110,9 @@ export default class Composer {
   // Add unreal bloom pass 
   addUnrealBloomPass() {
     this.unrealBloomPass = new UnrealBloomPass()
-    this.unrealBloomPass.strength = 0.15
-    this.unrealBloomPass.radius = 1.2
-    this.unrealBloomPass.threshold = 0.5
+    this.unrealBloomPass.strength = 0.4 //0.4
+    this.unrealBloomPass.radius = 1 //1
+    this.unrealBloomPass.threshold = 0.4 //0.3
     this.instance.addPass(this.unrealBloomPass)
   }
 
