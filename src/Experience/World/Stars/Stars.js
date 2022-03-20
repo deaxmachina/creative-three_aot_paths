@@ -13,7 +13,7 @@ export default class Stars {
     // Parameters
     this.parameters = {}
     this.parameters.count = 100000
-    this.parameters.size = 0.005
+    this.parameters.size = 0.007
     this.parameters.radius = 5
     this.parameters.randomness = 0.5
 
@@ -34,9 +34,10 @@ export default class Stars {
         const i3 = i * 3
         // Position
         const radius = Math.random() * this.parameters.radius
-        positions[i3    ] = (0.5 - Math.random())*13
-        positions[i3 + 1] = (0.5 - Math.random())*13
-        positions[i3 + 2] = (0.5 - Math.random())*13
+        positions[i3    ] = (0.5 - Math.random())*25
+        //positions[i3 + 1] = (0.5 - Math.random())*13
+        positions[i3 + 1] = (0.75 - Math.random())*12
+        positions[i3 + 2] = (0.5 - Math.random())*25
 
         // Scale
         scales[i] = Math.random()

@@ -4,6 +4,7 @@ import Environment from './Environment'
 // import TestCube from './TestCube'
 import Branches from './Branches/Branches'
 import Trunk from './Trunk/Trunk'
+import Hills from './Hills/Hills'
 import Stars from './Stars/Stars'
 import BranchStrings from './BranchStrings/BranchStrings'
 
@@ -23,6 +24,7 @@ export default class World {
     this.branches = new Branches()
     this.trunk = new Trunk()
     this.stars = new Stars()
+    this.hills = new Hills()
     //this.branchStrings = new BranchStrings()
     
   }

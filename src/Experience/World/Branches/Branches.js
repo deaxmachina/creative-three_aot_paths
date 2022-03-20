@@ -13,7 +13,7 @@ export default class Branches {
     this.time = this.experience.time
 
     // Parameters
-    this.cylinderHeight = 5
+    this.cylinderHeight = 6
     
     // Draw
     this.setMaterial()
